@@ -19,9 +19,9 @@ class ViewController: UIViewController {
 //        myTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         
         //클로저(Closure)의 사용
-        myTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (myTimer) in
-            self.updateTime()
-        })
+//        myTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (myTimer) in
+//            self.updateTime()
+//        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +35,16 @@ class ViewController: UIViewController {
         formatter.dateFormat = "HH:mm:ss EE"
         timelbl.text = formatter.string(from: date)
     }
+    @IBAction func timeswitchaction(_ sender: Any) {
+        if timeswitch.isOn == true {
+            // 클로저(closure)의 사용
+            myTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {(myTimer) in self.updateTime()})
+        } else {
+            myTimer.invalidate()
+        }
 
+    }
+    
 
 }
 
